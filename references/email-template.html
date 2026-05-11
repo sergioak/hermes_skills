@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); color: #fff; padding: 24px 28px; }
+  .header h1 { margin: 0; font-size: 20px; font-weight: 700; }
+  .header .sub { opacity: 0.85; font-size: 13px; margin-top: 6px; }
+  .header .week { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+
+  /* Summary stats */
+  .stats { display: flex; justify-content: space-around; padding: 14px 12px; background: #fef9f9; border-bottom: 1px solid #f0e0e0; flex-wrap: wrap; gap: 8px; }
+  .stats .stat { text-align: center; }
+  .stats .stat .num { font-size: 20px; font-weight: 700; color: #c0392b; }
+  .stats .stat .label { font-size: 11px; color: #999; margin-top: 2px; }
+  .stats .stat .country-flag { font-size: 16px; }
+
+  /* Section titles */
+  .country-header { font-size: 15px; font-weight: 700; color: #fff; background: #c0392b; padding: 8px 16px; margin: 20px 0 0; border-radius: 6px 6px 0 0; }
+  .section-hr { border: none; border-top: 1px solid #eee; margin: 0 16px; }
+
+  /* News items */
+  .item { padding: 14px 20px; border-bottom: 1px solid #f5f5f5; }
+  .item:last-child { border-bottom: none; }
+  .item h3 { margin: 0 0 4px; font-size: 14.5px; color: #222; line-height: 1.4; }
+  .item .original-title { font-size: 12px; color: #999; margin: 0 0 6px; font-style: italic; }
+  .item p { margin: 0 0 5px; font-size: 13px; line-height: 1.6; color: #555; }
+  .item .meta { font-size: 11.5px; color: #888; margin: 4px 0 8px; }
+  .item .meta span { margin-right: 10px; }
+  .item .meta .type-policy { color: #e67e22; font-weight: 600; }
+  .item .meta .type-risk { color: #c0392b; font-weight: 600; }
+  .item .meta .type-case { color: #f39c12; font-weight: 600; }
+  .item .meta .country { color: #555; font-weight: 500; }
+
+  /* Intro paragraph */
+  .item .intro { background: #fefefe; border-left: 3px solid #ddd; padding: 7px 12px; border-radius: 0 6px 6px 0; font-size: 13px; color: #555; line-height: 1.7; margin: 6px 0; }
+
+  /* Risk items */
+  .item.risk { background: #fffaf9; }
+  .item.risk .risk-detail { background: #fff3f0; border-left: 3px solid #e74c3c; padding: 7px 12px; border-radius: 0 6px 6px 0; margin-top: 6px; }
+  .item.risk .risk-detail p { font-size: 13px; margin-bottom: 4px; }
+
+  /* Case items */
+  .item.case { background: #fffef8; }
+  .item.case .case-detail { background: #fffbe0; border-left: 3px solid #f39c12; padding: 7px 12px; border-radius: 0 6px 6px 0; margin-top: 6px; }
+  .item.case .case-detail p { font-size: 13px; margin-bottom: 4px; }
+
+  /* Advice box */
+  .item .advice { background: #f0f8ff; border-left: 3px solid #3498db; padding: 7px 12px; border-radius: 0 6px 6px 0; margin-top: 8px; }
+  .item .advice ul { margin: 4px 0 0; padding-left: 16px; }
+  .item .advice li { font-size: 12.5px; line-height: 1.55; color: #555; margin-bottom: 2px; }
+
+  /* Content detail */
+  .item .content { margin-top: 6px; }
+  .item .content p { font-size: 13px; color: #555; }
+
+  /* Links */
+  .item .link { font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 12px; }
+  .item .link a { color: #3498db; text-decoration: none; }
+  .item .link .source { color: #aaa; font-size: 11px; }
+
+  /* Footer */
+  .footer { padding: 18px 24px; background: #fafafa; text-align: center; font-size: 12px; color: #999; border-top: 1px solid #eee; }
+  .footer a { color: #c0392b; text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .stats { flex-wrap: wrap; }
+    .stats .stat { min-width: 55px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🌏 HR海外劳动政策简报</h1>
+    <div class="sub">越南 · 墨西哥 · 波兰 · 秘鲁 · 智利</div>
+    <div class="week">{{DATE}} · 第{{WEEK}}周</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">{{TOTAL}}</div><div class="label">总条数</div></div>
+    <div class="stat"><div class="num">{{POLICY}}</div><div class="label">政策变化</div></div>
+    <div class="stat"><div class="num">{{RISK}}</div><div class="label">风险预测</div></div>
+    <div class="stat"><div class="num">{{CASE}}</div><div class="label">典型案例</div></div>
+  </div>
+
+  {{CONTENT}}
+
+  <div class="footer">
+    HR海外劳动政策简报 · 仅供参考，请以当地官方原文为准<br>
+    如需详细信息或建议，请联系 zhangkunjian@boe.com.cn
+  </div>
+
+</div>
+</body>
+</html>
